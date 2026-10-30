@@ -17,9 +17,10 @@ Unknown data (API or RPC down) is never treated as "asleep" or "not ready": noth
 
 ## How to get the alerts
 
-1. **GitHub notifications (no account elsewhere, no secret).** Click **Watch > Custom > Issues** on this repository. Each alert is opened as an issue labelled `alert` and closed after a day. Turn on push notifications in the GitHub mobile app.
-2. **RSS.** Add `feed.xml` (raw file URL of this repo) to any feed reader.
-3. **Your own Telegram or Discord channel.** Fork the repository and add secrets (below).
+1. **Telegram channel (easiest).** Join [t.me/squeek_alerts](https://t.me/squeek_alerts). Every alert is posted there by the bot.
+2. **GitHub notifications (no secret).** Click **Watch > Custom > Issues** on this repository. Each alert is opened as an issue labelled `alert` and closed after a day. Turn on push notifications in the GitHub mobile app.
+3. **RSS.** Add `feed.xml` (raw file URL of this repo) to any feed reader.
+4. **Your own Telegram or Discord channel.** Fork the repository and add secrets (below).
 
 ## Run your own copy
 
@@ -28,6 +29,8 @@ Unknown data (API or RPC down) is never treated as "asleep" or "not ready": noth
    - `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` (create a bot with @BotFather)
    - `DISCORD_WEBHOOK_URL` (create a webhook in a server you administer)
 3. The workflow `alerts` runs every 5 minutes. Secrets are only ever read by the workflow, never printed.
+
+Run the workflow manually with the `test` input set to `true` to send one clearly labelled test message to Telegram and Discord (nothing is logged or opened as an issue).
 
 Settings through environment variables: `SLEEP_CONFIRM` (default 3), `BLOCK_STEP` (default 100), `ISSUE_ALERTS=0` to disable issues, `DRY_RUN=1` to print instead of sending.
 

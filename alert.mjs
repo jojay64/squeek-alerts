@@ -197,6 +197,14 @@ async function main() {
   });
   console.log("sample:", JSON.stringify(sample), "events:", events.map((e) => e.kind).join(",") || "none");
 
+  if (process.env.TEST_ALERT === "1") {
+    const msg = "Squeek Alerts test\nThis is a test message. The bot can post to this channel.\n" + DASHBOARD;
+    for (const [name, fn] of [["telegram", () => sendTelegram(msg)], ["discord", () => sendDiscord(msg)]]) {
+      try { console.log(name + ":", await fn()); } catch (e) { console.error(name + " failed:", e.message); process.exitCode = 1; }
+    }
+    return;
+  }
+
   const log = await readJson("events.json", []);
   for (const ev of events) {
     ev.at = new Date().toISOString();
