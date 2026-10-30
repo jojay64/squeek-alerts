@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Squeek Alerts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=IBM+Plex+Mono:wght@400;500&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#d3d3dc;--card:#f6f6f9;--line:#e1e1ea;--text:#1b1b22;--muted:#6b6b80;
+  --amber:#d18a00;--amber-soft:#f0b43a;--blue:#4a63d8;--green:#3f8f5a;--green-soft:#8fb99b;--bad:#d9534f;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --display:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  --led:"VT323",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;padding:20px;min-height:100vh}
+a{color:var(--blue)}
+header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+h1{font-family:var(--display);font-size:44px;line-height:.95;margin:0;text-transform:uppercase}
+h1 span{color:var(--blue)}
+.sub{font-size:12px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #b9b9c8;background:var(--card);border-radius:4px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:14px}
+.card{background:var(--card) radial-gradient(#dcdce5 1px,transparent 1.2px) 0 0/12px 12px;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.wide{grid-column:1/-1}
+.label{display:flex;align-items:center;gap:10px;font-size:12px;text-transform:uppercase;letter-spacing:.16em}
+.label::before{content:"";width:12px;height:12px;background:var(--green);flex:none}
+.plain{font-size:13px;line-height:1.65;color:#33333f;margin:8px 0 0}
+.stage{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin-bottom:14px;padding:26px;border-radius:12px;
+  background:#0b0b10 radial-gradient(#262632 1.3px,transparent 1.6px) 0 0/9px 9px;color:#f6efb4}
+.stage .label{color:#9a9ab5}.stage .label::before{background:var(--amber-soft)}
+.badge{display:inline-block;padding:4px 14px;background:var(--blue);color:#fff;font-family:var(--led);font-size:38px;line-height:1;letter-spacing:.06em;text-transform:uppercase}
+.big{font-family:var(--led);font-size:58px;line-height:1;color:var(--amber-soft);text-transform:uppercase;margin-top:12px}
+.lede{font-family:var(--led);font-size:26px;color:#f6efb4;letter-spacing:.05em;margin-top:10px;max-width:520px}
+.btn{display:inline-block;margin-top:16px;padding:11px 16px;background:var(--amber);color:#fff;border-radius:4px;font-size:12px;text-transform:uppercase;letter-spacing:.16em;text-decoration:none}
+.btn:hover{background:#b97a00}
+/* phone mockup */
+.phone{width:290px;flex:none;border:6px solid #2a2a36;border-radius:34px;background:#15151c;padding:18px 12px 22px;box-shadow:0 0 0 2px #0b0b10}
+.phone .time{font-family:var(--led);font-size:44px;text-align:center;color:#fff;line-height:1}
+.phone .date{font-size:10px;text-align:center;color:#9a9ab5;text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px}
+.notif{display:flex;gap:10px;background:rgba(246,246,249,.94);color:var(--text);border-radius:14px;padding:10px 12px;margin-top:8px}
+.notif i{flex:none;width:26px;height:26px;margin-top:2px}
+.notif b{display:block;font-size:12px;line-height:1.3}
+.notif span{display:block;font-size:11px;color:var(--muted);line-height:1.4;margin-top:2px}
+.notif small{margin-left:auto;font-size:10px;color:var(--muted);flex:none}
+.k-wake{background:var(--amber-soft)}.k-sleep{background:var(--blue)}.k-cp{background:var(--green)}.k-ms{background:#b9b9c8}
+/* alert types */
+.type{display:flex;gap:14px}
+.type>i{flex:none;width:34px;height:34px}
+.type h3{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+.example{margin-top:10px;padding:10px 12px;background:#fff;border:1px solid var(--line);font-size:12px;line-height:1.5}
+.example em{font-style:normal;color:var(--muted);display:block;margin-top:4px}
+.steps{display:grid;gap:12px;margin-top:12px}
+.step{display:flex;gap:14px;background:#fff;border:1px solid var(--line);padding:14px}
+.step>b{flex:none;width:34px;height:34px;background:var(--blue);color:#fff;font-family:var(--led);font-size:26px;line-height:34px;text-align:center}
+.step h3{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+.feed{margin-top:12px;display:grid;gap:8px}
+.feed .row{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);padding:10px 12px}
+.feed .row i{width:14px;height:14px;flex:none}
+.feed .row small{margin-left:auto;color:var(--muted);flex:none}
+footer{margin-top:20px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#55556a;line-height:1.8}
+@media (max-width:560px){h1{font-size:36px}.big{font-size:44px}.phone{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Squeek Alerts <span>Push for the wheel</span></h1>
+    <div class="sub">Unofficial · Sepolia (testnet) · read-only</div>
+  </div>
+  <div class="pill">Checks every 5 minutes</div>
+</header>
+
+<div class="stage">
+  <div style="flex:1;min-width:260px">
+    <div class="label">Real alerts, no open tab</div>
+    <div style="margin-top:12px"><span class="badge">Live</span></div>
+    <div class="big">Don't watch the wheel.<br>Let the wheel call you.</div>
+    <div class="lede">Get pinged when the hamster wakes up, falls asleep, or when a checkpoint is ready.</div>
+    <a class="btn" href="https://github.com/jojay64/squeek-alerts" target="_blank" rel="noopener">Get the alerts →</a>
+  </div>
+  <div class="phone" aria-label="Example notifications">
+    <div class="time">21:04</div>
+    <div class="date">Example notifications</div>
+    <div class="notif"><i class="k-wake"></i><div><b>The hamster is running!</b><span>The wheel just started spinning (22.4 rpm).</span></div><small>now</small></div>
+    <div class="notif"><i class="k-cp"></i><div><b>Checkpoint is ready</b><span>SqueekMining reports a settled round waiting.</span></div><small>2m</small></div>
+    <div class="notif"><i class="k-ms"></i><div><b>Squeek block 4200 reached</b><span>The settled block height just passed 4200.</span></div><small>9m</small></div>
+    <div class="notif"><i class="k-sleep"></i><div><b>The hamster fell asleep</b><span>The wheel has been still for a while.</span></div><small>8h</small></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card type"><i class="k-wake"></i><div>
+    <h3>Wake-up</h3>
+    <p class="plain">Fires once when the wheel goes from idle to active. No repeats while he keeps running.</p>
+    <div class="example">The hamster is running!<em>The wheel just started spinning (22.4 rpm).</em></div>
+  </div></div>
+  <div class="card type"><i class="k-sleep"></i><div>
+    <h3>Bedtime</h3>
+    <p class="plain">Fires after 3 idle checks in a row (about 15 min), so a short pause is not announced.</p>
+    <div class="example">The hamster fell asleep<em>Blocks wait for the next sprint.</em></div>
+  </div></div>
+  <div class="card type"><i class="k-cp"></i><div>
+    <h3>Checkpoint ready</h3>
+    <p class="plain">Fires when the contract says a round is settled and the core is not paused. Always check and simulate before you send anything.</p>
+    <div class="example">Checkpoint is ready<em>SqueekMining reports a settled round waiting.</em></div>
+  </div></div>
+  <div class="card type"><i class="k-ms"></i><div>
+    <h3>Block milestone</h3>
+    <p class="plain">Fires each time the settled block height passes a multiple of 100.</p>
+    <div class="example">Squeek block 4200 reached<em>The settled block height just passed 4200.</em></div>
+  </div></div>
+</div>
+
+<div class="card wide" style="margin-bottom:14px">
+  <div class="label">Three ways to get them</div>
+  <div class="steps">
+    <div class="step"><b>1</b><div><h3>GitHub notifications · easiest</h3><p class="plain">On the repository click <b>Watch &gt; Custom &gt; Issues</b>. Each alert becomes an issue and GitHub pushes it to your phone. Nothing else to install, no secret.</p></div></div>
+    <div class="step"><b>2</b><div><h3>RSS</h3><p class="plain">Add the <code>feed.xml</code> file of the repository to any feed reader.</p></div></div>
+    <div class="step"><b>3</b><div><h3>Your own Telegram or Discord</h3><p class="plain">Fork the repository, add a bot token or a webhook as a secret, done. The secrets stay in your fork and are never printed.</p></div></div>
+  </div>
+</div>
+
+<div class="card wide" style="margin-bottom:14px">
+  <div class="label">Latest real alerts</div>
+  <div class="feed" id="feed"><div class="sub" style="margin:0">Loading…</div></div>
+</div>
+
+<footer>
+  Unofficial community project, not affiliated with the Squeekchain team. Testnet only: SQK has no monetary value.<br>
+  Read-only. It never signs or sends a transaction. GitHub schedules are best effort, so alerts can be a few minutes late.<br>
+  <a href="https://github.com/jojay64/squeek-alerts">Source</a> · <a href="https://jojay64.github.io/squeek-dashboard/">Dashboard</a> · <a href="https://docs.squeekchain.com">Docs</a>
+</footer>
+
+<script>
+const KIND = { wake: "k-wake", sleep: "k-sleep", checkpoint: "k-cp", milestone: "k-ms" };
+const esc = (s) => String(s).replace(/[<>&"']/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }[c]));
+(async () => {
+  const box = document.getElementById("feed");
+  try {
+    const res = await fetch("events.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const events = await res.json();
+    if (!Array.isArray(events) || !events.length) {
+      box.innerHTML = '<div class="sub" style="margin:0">No alert yet. The hamster has not triggered one since this page started watching.</div>';
+      return;
+    }
+    box.innerHTML = events.slice(0, 8).map((e) =>
+      `<div class="row"><i class="${KIND[e.kind] || "k-ms"}"></i><div><b>${esc(e.title)}</b><div class="sub" style="margin:2px 0 0">${esc(e.text)}</div></div><small>${esc(new Date(e.at).toLocaleString("en-GB", { timeZone: "UTC", dateStyle: "short", timeStyle: "short" }))} UTC</small></div>`
+    ).join("");
+  } catch (err) {
+    box.innerHTML = '<div class="sub" style="margin:0">Could not load the alert log (' + esc(err.message) + ').</div>';
+  }
+})();
+</script>
+</body>
+</html>
