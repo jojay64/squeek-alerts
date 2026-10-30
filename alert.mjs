@@ -39,8 +39,8 @@ export function decide(prev, sample, cfg = DEFAULTS) {
         state.idleStreak = 0;
         events.push({
           kind: "sleep",
-          title: "The hamster fell asleep",
-          text: "The wheel has been still for a while. Blocks wait for the next sprint.",
+          title: "The wheel stopped",
+          text: "The wheel has been still for a while (about 15 minutes). Blocks wait for the next sprint.",
         });
       }
     } else {

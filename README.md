@@ -8,12 +8,12 @@ Real push alerts for the [Squeekchain](https://docs.squeekchain.com) hamster whe
 
 | Alert | When |
 |---|---|
-| **The hamster is running!** | The wheel goes from idle to active. |
-| **The hamster fell asleep** | The wheel stays idle for 3 checks in a row (about 15 minutes), so a short pause is not announced. |
+| **The hamster is running!** | The wheel goes from idle to active (`coreStatus = ACTIVE`). A hamster that is awake but not turning the wheel does not trigger it. |
+| **The wheel stopped** | The wheel stays idle for 3 checks in a row (about 15 minutes), so a short pause is not announced. |
 | **Checkpoint is ready** | `checkpointStatus()` on SqueekMining changes to `corePaused = false` and `roundSettled = true`. This is the moment to call `checkpoint()`, for example with the [step-by-step helper](https://jojay64.github.io/squeek-dashboard/). |
 | **Squeek block N reached** | The settled block height passes a multiple of 100. |
 
-Unknown data (API or RPC down) is never treated as "asleep" or "not ready": nothing is announced and the previous state is kept.
+Unknown data (API or RPC down) is never treated as "stopped" or "not ready": nothing is announced and the previous state is kept.
 
 ## How to get the alerts
 

@@ -79,7 +79,7 @@ footer{margin-top:20px;font-size:11px;text-transform:uppercase;letter-spacing:.0
     <div class="label">Real alerts, no open tab</div>
     <div style="margin-top:12px"><span class="badge">Live</span></div>
     <div class="big">Don't watch the wheel.<br>Let the wheel call you.</div>
-    <div class="lede">Get pinged when the hamster wakes up, falls asleep, or when a checkpoint is ready.</div>
+    <div class="lede">Get pinged when the wheel starts spinning, when it stops, or when a checkpoint is ready.</div>
     <a class="btn" href="https://t.me/squeek_alerts" target="_blank" rel="noopener">Join on Telegram →</a>
   </div>
   <div class="phone" aria-label="Example notifications">
@@ -88,20 +88,20 @@ footer{margin-top:20px;font-size:11px;text-transform:uppercase;letter-spacing:.0
     <div class="notif"><i class="k-wake"></i><div><b>The hamster is running!</b><span>The wheel just started spinning (22.4 rpm).</span></div><small>now</small></div>
     <div class="notif"><i class="k-cp"></i><div><b>Checkpoint is ready</b><span>SqueekMining reports a settled round waiting.</span></div><small>2m</small></div>
     <div class="notif"><i class="k-ms"></i><div><b>Squeek block 4200 reached</b><span>The settled block height just passed 4200.</span></div><small>9m</small></div>
-    <div class="notif"><i class="k-sleep"></i><div><b>The hamster fell asleep</b><span>The wheel has been still for a while.</span></div><small>8h</small></div>
+    <div class="notif"><i class="k-sleep"></i><div><b>The wheel stopped</b><span>The wheel has been still for about 15 minutes.</span></div><small>8h</small></div>
   </div>
 </div>
 
 <div class="grid">
   <div class="card type"><i class="k-wake"></i><div>
-    <h3>Wake-up</h3>
-    <p class="plain">Fires once when the wheel goes from idle to active. No repeats while he keeps running.</p>
+    <h3>Wheel running</h3>
+    <p class="plain">Fires once when the wheel goes from idle to active (spinning). Being awake is not enough: the wheel has to turn. No repeats while he keeps running.</p>
     <div class="example">The hamster is running!<em>The wheel just started spinning (22.4 rpm).</em></div>
   </div></div>
   <div class="card type"><i class="k-sleep"></i><div>
-    <h3>Bedtime</h3>
-    <p class="plain">Fires after 3 idle checks in a row (about 15 min), so a short pause is not announced.</p>
-    <div class="example">The hamster fell asleep<em>Blocks wait for the next sprint.</em></div>
+    <h3>Wheel stopped</h3>
+    <p class="plain">Fires after 3 idle checks in a row (about 15 min) once the wheel was spinning, so a short pause is not announced.</p>
+    <div class="example">The wheel stopped<em>Blocks wait for the next sprint.</em></div>
   </div></div>
   <div class="card type"><i class="k-cp"></i><div>
     <h3>Checkpoint ready</h3>
