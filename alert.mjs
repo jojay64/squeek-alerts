@@ -6,7 +6,7 @@ import { pathToFileURL } from "node:url";
 const API_STATUS = "https://api.squeekchain.com/v1/status";
 const RPC = "https://ethereum-sepolia-rpc.publicnode.com";
 // SqueekMining proxy, from https://docs.squeekchain.com/assets/deployments/sepolia.json
-const MINING = "0x3beE588fC20dE788Bac17d33b41Da7346cb27EC4";
+const MINING = "0x2dccb11fcc2defdd188555e45acb52231e82e218";
 const CHECKPOINT_STATUS_SELECTOR = "0x001c856f"; // checkpointStatus()
 const DASHBOARD = "https://jojay64.github.io/squeek-dashboard/";
 
