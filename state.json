@@ -1,6 +1,6 @@
 {
   "awake": null,
   "idleStreak": 0,
-  "cpReady": true,
+  "cpReady": false,
   "milestone": null
 }
