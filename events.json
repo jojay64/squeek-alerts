@@ -1,5 +1,12 @@
 [
   {
+    "kind": "milestone",
+    "title": "Squeek block 3700 reached",
+    "text": "The settled block height just passed 3700.",
+    "at": "2026-11-08T23:28:23.880Z",
+    "id": "milestone-2026-11-08T23:28:23.880Z"
+  },
+  {
     "kind": "checkpoint",
     "title": "Checkpoint is ready",
     "text": "SqueekMining reports a settled round waiting (nextRound 654). Anyone can call checkpoint(); always check the status and simulate first.",
