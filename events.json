@@ -1,6 +1,20 @@
 [
   {
     "kind": "milestone",
+    "title": "Squeek block 5600 reached",
+    "text": "The settled block height just passed 5600.",
+    "at": "2026-11-10T23:49:40.623Z",
+    "id": "milestone-2026-11-10T23:49:40.623Z"
+  },
+  {
+    "kind": "wake",
+    "title": "The hamster is running!",
+    "text": "The wheel just started spinning (67.0 rpm).",
+    "at": "2026-11-10T23:49:38.978Z",
+    "id": "wake-2026-11-10T23:49:38.978Z"
+  },
+  {
+    "kind": "milestone",
     "title": "Squeek block 5300 reached",
     "text": "The settled block height just passed 5300.",
     "at": "2026-11-10T11:43:36.056Z",
