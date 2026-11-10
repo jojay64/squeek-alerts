@@ -1,6 +1,13 @@
 [
   {
     "kind": "milestone",
+    "title": "Squeek block 5200 reached",
+    "text": "The settled block height just passed 5200.",
+    "at": "2026-11-10T03:35:12.916Z",
+    "id": "milestone-2026-11-10T03:35:12.916Z"
+  },
+  {
+    "kind": "milestone",
     "title": "Squeek block 4300 reached",
     "text": "The settled block height just passed 4300.",
     "at": "2026-11-09T10:52:09.446Z",
