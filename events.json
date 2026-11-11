@@ -1,5 +1,12 @@
 [
   {
+    "kind": "sleep",
+    "title": "The wheel stopped",
+    "text": "The wheel has been still for a while (about 15 minutes). Blocks wait for the next sprint.",
+    "at": "2026-11-11T18:35:01.920Z",
+    "id": "sleep-2026-11-11T18:35:01.920Z"
+  },
+  {
     "kind": "milestone",
     "title": "Squeek block 6000 reached",
     "text": "The settled block height just passed 6000.",
