@@ -1,5 +1,19 @@
 [
   {
+    "kind": "milestone",
+    "title": "Squeek block 6400 reached",
+    "text": "The settled block height just passed 6400.",
+    "at": "2026-11-12T00:58:37.377Z",
+    "id": "milestone-2026-11-12T00:58:37.377Z"
+  },
+  {
+    "kind": "checkpoint",
+    "title": "Checkpoint is ready",
+    "text": "SqueekMining reports a settled round waiting (nextRound 1182). Anyone can call checkpoint(); always check the status and simulate first.",
+    "at": "2026-11-12T00:58:34.178Z",
+    "id": "checkpoint-2026-11-12T00:58:34.178Z"
+  },
+  {
     "kind": "sleep",
     "title": "The wheel stopped",
     "text": "The wheel has been still for a while (about 15 minutes). Blocks wait for the next sprint.",
